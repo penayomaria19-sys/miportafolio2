@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Juego - Maria Penayo</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <nav class="nav">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#proyectos">Proyectos </a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+<!-- Presentación del Juego -->
+<div class="proyecto-card">
+  <div class="proyecto-contenido">
+    <h3><i class="fa-solid fa-gamepad"></i> Mini Juego: Adivina la Palabra</h3>
+    <p>
+      Este proyecto es un <strong>mini juego interactivo</strong>  donde el jugador debe adivinar la palabra
+      letra por letra antes de quedarse sin intentos.
+    </p>
+    <ul>
+      <li>🎯 Objetivo: Adivinar la palabra oculta</li>
+      <li>⏳ Intentos: 6</li>
+      <li>⚡ Retroalimentación en tiempo real</li>
+    </ul>
+   
+  </div>
+
+
+    <!-- PROYECTOS -->
+  <section id="proyectos" style="padding: 20px; background-color: #f0f0f0;">
+  <h2> PROYECTOS</h2>
+
+  <!-- Proyecto Mini Juego -->
+  <div class="proyecto" style="background-color: #fff; padding: 15px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <h3>Mini Juego:🤔⁇⁇ Adivina la Palabra</h3>
+    <p>Un juego interactivo donde debes adivinar la palabra letra por letra. ¡Tienes 6 intentos!</p>
+
+    <p id="palabraDisplay" style="font-size: 24px; letter-spacing: 5px;"></p>
+    <input type="text" id="letra" maxlength="1" placeholder="Escribe una letra">
+    <button onclick="adivinarLetra()">Adivinar</button>
+    <p id="intentosDisplay">Intentos restantes: 6</p>
+    <p id="mensaje" style="font-weight: bold;"></p>
+  </div>
+</section>
+
+<!-- JavaScript -->
+<script>
+const palabras = ["computadora", "inteligencia", "paraguay", "javascript", "tecnologia"];
+const palabraSecreta = palabras[Math.floor(Math.random() * palabras.length)];
+let palabraMostrada = Array(palabraSecreta.length).fill("_");
+let intentosRestantes = 6;
+let letrasAdivinadas = [];
+
+document.getElementById("palabraDisplay").innerText = palabraMostrada.join(" ");
+
+function adivinarLetra() {
+    const letraInput = document.getElementById("letra").value.toLowerCase();
+    document.getElementById("letra").value = "";
+
+    if (!letraInput || letraInput.length !== 1) {
+        alert("Por favor, escribe una sola letra.");
+        return;
+    }
+
+    if (letrasAdivinadas.includes(letraInput)) {
+        alert("Ya has usado esa letra.");
+        return;
+    }
+
+    letrasAdivinadas.push(letraInput);
+
+    if (palabraSecreta.includes(letraInput)) {
+        for (let i = 0; i < palabraSecreta.length; i++) {
+            if (palabraSecreta[i] === letraInput) {
+                palabraMostrada[i] = letraInput;
+            }
+        }
+    } else {
+        intentosRestantes--;
+    }
+
+    document.getElementById("palabraDisplay").innerText = palabraMostrada.join(" ");
+    document.getElementById("intentosDisplay").innerText = "Intentos restantes: " + intentosRestantes;
+
+    if (!palabraMostrada.includes("_")) {
+        document.getElementById("mensaje").innerText = "🎉 ¡Felicidades! Adivinaste la palabra: " + palabraSecreta;
+    } else if (intentosRestantes === 0) {
+        document.getElementById("mensaje").innerText = "💀 ¡Perdiste! La palabra era: " + palabraSecreta;
+    } else if (palabraSecreta.includes(letraInput)) {
+        document.getElementById("mensaje").innerText = "✅ ¡Bien! Esa letra está en la palabra.";
+    } else {
+        document.getElementById("mensaje").innerText = "❌ Esa letra no está, cuidado.";
+    }
+}
+</script>
+</section>
+</body>
+</html>
+    </section>
+
+<!-- Galería de imágenes y videos -->
+ <senction id="imagenes">
+  <h2>IMAGENES</h2>
+  <div class="galeria" style="display: flex; flex-wrap: wrap; gap: 15px;">
+    <!-- Imagenes -->
+    <div style="flex: 1 1 200px;">
+      <img src="c:\Users\alumno\Downloads\video-game-7182563_1280.png" alt="1" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+    </div>
+    <div style="flex: 1 1 200px;">
+      <img src="c:\Users\alumno\Downloads\code-3622942_1280.jpg" alt="Proyecto 2" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+    </div>
+</senction>
+    <!-- Videos -->
+     <section id="videos">
+      <h2> VIDEOS</h2>
+    <div style="flex: 1 1 300px;">
+      <video controls style="width: 100%; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+        <source src="c:\Users\alumno\Downloads\23355-334950213_small.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+      </video>
+    </div>
+    </section>
+  </div>
+   <!-- SOBRE MI -->
+    <section id="sobre-mi">
+      <h1>Sobre mí</h1>
+      <img src="c:\Users\alumno\Downloads\th.jpg" alt="avatar Maria">
+      <p>
+Soy <strong>Maria Penayo Nuñez</strong>, estudiante de informatica, me apasiona el aprendizaje constante y la innovación.   
+Mi objetivo es crecer profesionalmente aplicando mis conocimientos en proyectos que combinen creatividad, 
+tecnología y un impacto positivo en la sociedad.
+</p>
+
+    </section>
+<!-- HABILIDADES -->
+    <section id="habilidades">
+      <h2>Habilidades</h2>
+      <ul>
+        <li><i class="fa-solid fa-code"></i> Desarrollo Web (HTML, CSS, JS)</li>
+        <li><i class="fa-solid fa-brain"></i>Herramientas de Software</li>
+        <li><i class="fa-solid fa-database"></i> Análisis y gestión de datos</li>
+      </ul>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <h2>📞Contacto</h2>
+      <form id="contactForm">
+        <label>Nombre:<br><input type="text" id="nombre" required></label><br>
+        <label>Email:<br><input type="email" id="email" required></label><br>
+        <label>Mensaje:<br><textarea id="mensaje" required></textarea></label><br>
+        <button type="submit">Enviar</button>
+      </form>
+      <p id="formMsg"></p>
+
+      <h3>📍 Mi ubicación</h3>
+      <iframe src="https://www.google.com/maps?q=Asunción, Paraguay&output=embed"
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 - Portafolio Profesional (IA) | Maria Penayo</p>
+  </footer>
+</body>
+</html>
+<style>
+/* -------- RESET BÁSICO -------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #98c4ff;
+  color: #333;
+}
+
+/* -------- HEADER & NAV -------- */
+header {
+  background: #222;
+  padding: 15px 20px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #ff9800;
+}
+
+/* -------- SECCIONES -------- */
+main section {
+  padding: 40px 20px;
+}
+
+h1, h2, h3 {
+  margin-bottom: 15px;
+  color: #222;
+}
+
+/* -------- PROYECTOS / JUEGO -------- */
+.proyecto {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+#palabraDisplay {
+  font-size: 28px;
+  letter-spacing: 8px;
+  margin: 15px 0;
+}
+
+#letra {
+  padding: 10px;
+  font-size: 18px;
+  width: 60px;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+button {
+  background: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #e68900;
+}
+
+#mensaje {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+/* -------- GALERÍA -------- */
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.galeria img, .galeria video {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.galeria img:hover, .galeria video:hover {
+  transform: scale(1.05);
+}
+
+/* -------- SOBRE MÍ -------- */
+#sobre-mi {
+  text-align: center;
+}
+
+#sobre-mi img {
+  width: 150px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* -------- HABILIDADES -------- */
+#habilidades ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+#habilidades li {
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* -------- CONTACTO -------- */
+form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+form input, form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  align-self: center;
+  background: #2196f3;
+}
+
+form button:hover {
+  background: #1976d2;
+}
+
+/* -------- FOOTER -------- */
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+</style>
